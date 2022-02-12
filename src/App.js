@@ -15,7 +15,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          First initial commit
+          small change
         </a>
       </header>
     </div>
