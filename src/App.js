@@ -15,7 +15,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn Github
+          First initial commit
         </a>
       </header>
     </div>
