@@ -1,9 +1,9 @@
 import "./topbar.css"
-import { } from "@mui/icons-material"
+// import { } from "@mui/icons-material"
 
 export default function Topbar() {
   return (
-    <div classname="topbarContainer">
+    <div className="topbarContainer">
 
       <div className="topbarLeft">
         <span className="log">Lamasocial</span>
