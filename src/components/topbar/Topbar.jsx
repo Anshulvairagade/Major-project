@@ -1,21 +1,43 @@
 import "./topbar.css"
-import { } from "@mui/icons-material"
+import { Search, Person, Chat, Notifications } from "@mui/icons-material"
 
 export default function Topbar() {
   return (
-    <div classname="topbarContainer">
+    <div className="topbarContainer">
 
       <div className="topbarLeft">
-        <span className="log">Lamasocial</span>
+        <span className="logo">Lamasocial</span>
       </div>
 
       <div className="topbarCenter">
-        <div className="searchbar"></div>
+        <div className="searchbar">
+          <Search />
+          <input placeholder="Search for friends ,post or videos" className="searchInput" />
+        </div>
       </div>
 
-      <div className="topbarRight"></div>
-
+      <div className="topbarRight">
+        <div className="topbarLink">
+          <span className="topbarLink">Homapage</span>
+          <span className="topbarLink">Timeline</span>
+        </div>
+        <div className="topbarIcons">
+          <div className="topbarIconItem">
+            <Person />
+            <span className="topbarIconBadge">1</span>
+          </div>
+          <div className="topbarIconItem">
+            <Chat />
+            <span className="topbarIconBadge">2</span>
+          </div>
+          <div className="topbarIconItem">
+            <Notifications />
+            <span className="topbarIconBadge">1</span>
+          </div>
+        </div>
+        <img src="/assets/1.jpg" alt="NONE" className="topbarImg" />
+      </div>
     </div>
-  )
+  );
 }
 
