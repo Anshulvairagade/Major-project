@@ -11,7 +11,7 @@
 }
 
 .shareTop{
-    displa: flex;
+    display: flex;
     align-items: center;
 }
 
@@ -36,7 +36,7 @@
     margin: 20px;
 }
 
-.shareButton{
+.shareBottom{
     display: flex;
     align-items: center;
     justify-content:space-between;
@@ -60,7 +60,7 @@
 }
 
 .shareOptionText{
-    font-style: 14px;
+    font-size: 14px;
     font-weight: 500;
 }
 
@@ -68,9 +68,9 @@
     border: none;
     padding: 7px;
     border-radius: 5px;
-    background-color: green;
+    background-color:green;
     font-weight: 500;
-    margin-right: 200px;
+    margin-right: 20px;
     cursor: pointer;
     color: white;
 }
