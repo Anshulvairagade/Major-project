@@ -14,19 +14,15 @@ import { Input } from '@chakra-ui/input';
 import {  useToast } from '@chakra-ui/toast';
 import axios from 'axios';
 import Loader from '../../components/Loader/Loader';
-import UserListItem from '../../components/User Avatar/UserListItem';
+import  UserListItem  from '../../components/User Avatar/UserListItem'
+import { Spinner } from '@chakra-ui/spinner';
 
 
-const allowedState = [
-    { _id: 1, value: "Alabama" },
-    { _id: 2, value: "Georgia" },
-    { _id: 3, value: "Tennessee" }
-  ];
 
 
 const SideDrawer = () => {
 
-    const {user} = ChatState();
+    const {user, setSelectedChat,chats, setChats} = ChatState();
 //   const user = JSON.parse(localStorage.getItem("userInfo"));
 
 
@@ -46,6 +42,7 @@ const SideDrawer = () => {
 
 
    const handleSearch = () =>{
+
          if(!search){
              toast({
                  title:"Please Enter Something in Search",
@@ -63,11 +60,12 @@ const SideDrawer = () => {
                  headers: {
                      Authorization:`Bearer ${user.token}`,
                  },
-             }
-           axios.get(`/api/user?search=${search}`,config).then(data=>setSearchResult(data.data));
+             };
 
-            
+
+           axios.get(`/api/user?search=${search}`,config).then(data =>setSearchResult(data.data));
             setLoading(false);
+
          } catch (error) {
             setLoading(false);
             toast({
@@ -79,12 +77,37 @@ const SideDrawer = () => {
                 position:"bottom-left"
             });
          }
-         console.log(searchResult);
    }
 
 
-   const accessChat = (userId) =>{
+   const accessChat = async (userId) =>{
+            try {
+                 setChatLoading(true); 
+                  const config ={
+                    headers: {
+                        "Content-type":"application/json",
+                        Authorization:`Bearer ${user.token}`,
+                    },
+                };
 
+                const { data } = await axios.post('/api/chat',{userId},config);
+
+                if(!chats.find((c)=> c._id === data._id)) setChats([data, ...chats]);
+
+               //  console.log(data);
+                setSelectedChat(data);
+                setChatLoading(false);
+                onClose();
+            } catch (error) {
+                toast({
+                    title:"Error Fetching the chat",
+                    description: error.message,
+                    status:"warning",
+                    duration:5000,
+                    isClosable:true,
+                    position:"bottom-left"
+                });
+            }
    }
 
     return (
@@ -142,14 +165,18 @@ const SideDrawer = () => {
                             {loading ? (
                                 <Loader></Loader>
                             ): (
-                                searchResult?.map((item)=>{
-                                     <UserListItem
-                                       key={item._id}
-                                       user={item}
-                                       handleFunction={()=>accessChat(item._id)}
-                                     />
-                                 })
+                                searchResult?.map((item)=>(
+                                    // console.log(item);
+                                    <UserListItem 
+                                    key={item._id}
+                                    user={item}
+                                    handleFunction={()=>accessChat(item._id)}
+                                    />
+                                     
+                                ))
                             )}
+
+                            {chatLoading && <Spinner ml="auto" d="flex" />}
                           </DrawerBody>
                       </DrawerContent>
               </Drawer> 
