@@ -53,7 +53,7 @@ const Login = () => {
                 position:"top",
               });
 
-              localStorage.setItem('userInfo',JSON.stringify(data));
+              localStorage.setItem("userInfo",JSON.stringify(data));
               setLoading(false);
               history.push('/');
         } catch (error) {
