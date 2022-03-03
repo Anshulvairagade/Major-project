@@ -22,7 +22,7 @@ const GroupChatModal = ({children}) => {
 
     const { isOpen, onOpen, onClose } = useDisclosure();
     const [ groupChatName, setGroupChatName] = useState();
-    const [selectedUers, setSelectedUsers] = useState([]);
+    const [selectedUser, setSelectedUsers] = useState([]);
     const [search, setSearch] = useState("");
     const [searchResult, setSearchResult] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -60,7 +60,7 @@ const GroupChatModal = ({children}) => {
     }
 
     const handleSubmit = async(value) =>{
-                if(!groupChatName || !selectedUers){
+                if(!groupChatName || !selectedUser){
                     toast({
                         title:"Please Fill all the Feilds",
                         status:"warning",
@@ -79,7 +79,7 @@ const GroupChatModal = ({children}) => {
                     };
                     const { data } = await axios.post('/api/chat/group',{
                         name: groupChatName,
-                        users: JSON.stringify(selectedUers.map((u)=>u._id))
+                        users: JSON.stringify(selectedUser.map((u)=>u._id))
                     },config);
                     setChats([data,...chats]);
                     onClose();
@@ -103,7 +103,7 @@ const GroupChatModal = ({children}) => {
 
 
     const handleGroup = (userToAdd) =>{
-             if(selectedUers.includes(userToAdd)){
+             if(selectedUser.includes(userToAdd)){
                 toast({
                     title:"User Already Added",
                     status:"warning",
@@ -113,13 +113,13 @@ const GroupChatModal = ({children}) => {
                 });
                 return;
              }  
-             setSelectedUsers([...selectedUers,userToAdd]);
+             setSelectedUsers([...selectedUser,userToAdd]);
     }
 
 
     const handleDelete = (delUser) =>{
                 setSelectedUsers(
-                    selectedUers.filter((sel)=>sel._id !== delUser._id)
+                    selectedUser.filter((sel)=>sel._id !== delUser._id)
                     );
     }
 
@@ -155,7 +155,7 @@ const GroupChatModal = ({children}) => {
                               />
                           </FormControl>
                            <Box w="100%" d="flex" flexWrap="wrap">
-                                {selectedUers.map(u=>(
+                                {selectedUser.map(u=>(
                                     <UserBadgeItem
                                         key={u._id}
                                         user={u}
