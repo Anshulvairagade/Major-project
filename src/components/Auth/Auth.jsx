@@ -14,11 +14,11 @@ function Auth() {
            p={3}
            bg={"white"}
            w="100%"
-           m="40px 0 15px 0"
+           m="70px 0 20px 0"
            borderRadius="lg"
            borderWidth="1px"
            >
-               <Text className="loginHeading font-heading">Baat-Chit</Text>
+               <Text className="loginHeading font-heading" d="flex" >Baat-Chit <img src="assets/logo.png" className="logoImage" /></Text>
            </Box>
            <Box bg="White" w="100%" p={4} borderRadius="lg" borderWidth="1px">
            <Tabs variant='soft-rounded' >

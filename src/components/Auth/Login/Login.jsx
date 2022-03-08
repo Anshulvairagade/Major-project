@@ -5,7 +5,8 @@ import { VStack } from '@chakra-ui/layout'
 import { useToast } from '@chakra-ui/toast'
 import React, { useState } from 'react'
 import axios from 'axios'
-import { useHistory } from 'react-router';
+import { useHistory} from "react-router";
+
 
 
 const Login = () => {
@@ -15,6 +16,7 @@ const Login = () => {
     const [show, setShow] = useState(false); 
     const [loading, setLoading] = useState(false);
     const toast = useToast();
+
     const history = useHistory();
 
     
@@ -52,12 +54,14 @@ const Login = () => {
                 isClosable: true,
                 position:"top",
               });
+            // console.log(data);
+            
+            localStorage.setItem("userInfo", JSON.stringify(data));
+            setLoading(false);
+            history.push("/chats");
 
-              localStorage.setItem("userInfo",JSON.stringify(data));
-              setLoading(false);
-              history.push('/');
+
         } catch (error) {
-            console.log('nitin');
             toast({
                 title: 'Login Fail',
                 description:"Email or Password is incorrect",

@@ -11,63 +11,94 @@ const Translate = () => {
     const [from, setFrom] = useState('en');
     const [inputText, setInputText] = useState('');
     const [onputText, setOnputText] = useState('');
+    const [getData, setGetData] = useState(true);
 
-    const traslateText = () =>{
+    const data = [
+        {
+            name: "What are you doing"
+        }
+        , {
+            name: "I am working"
+        },
+        , {
+            name: "Okay, then bye"
+        }
+    ]
+
+    const traslateText = () => {
         // curl -X POST "https://libretranslate.com/translate" -H  "accept: application/json" -H  "Content-Type: application/x-www-form-urlencoded" -d "q=nitn&source=en&target=es&format=text&api_key=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
 
         const params = new URLSearchParams();
-        params.append('q',inputText);
-        params.append('source',from);
-        params.append('target',to);
-        params.append('api_key','xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx');
+        let output = [];
+        data.map((item) => {
 
-        axios.post('https://libretranslate.de/translate', params,
-        {
-            headers:
-            {
-                'accept':'application/json',
-                'Content-Type': 'application/x-www-form-urlencoded'}
-        }).then(res =>{
-            // console.log(res.data);
-            setOnputText(res.data.translatedText)
+            if (getData) {
+                setGetData(false);
+                params.delete('q');
+                params.append('q', item.name);
+                params.append('source', from);
+                params.append('target', to);
+                params.append('api_key', 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx');
+
+                 axios.post('https://libretranslate.de/translate', params,
+                    {
+                        headers:
+                        {
+                            'accept': 'application/json',
+                            'Content-Type': 'application/x-www-form-urlencoded'
+                        }
+                    }).then(res => {
+                        output.push(res.data);
+                        // output = output.reverse()
+                        setGetData(true);
+                        console.log(output);
+                        setOnputText(
+                            output.map((result) => {
+                                return result.translatedText;
+                            })
+                        );
+                    })
+            }
+
+
         })
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         axios.get('https://libretranslate.com/languages',
-        {
-            headers:{'accept':'application/json'}
-        }).then(res=>{
-            setOptions(res.data)
-        })
-    },[])
-    
+            {
+                headers: { 'accept': 'application/json' }
+            }).then(res => {
+                setOptions(res.data)
+            })
+    }, [])
+
     // curl -X GET "https://libretranslate.com/languages" -H  "accept: application/json"
 
 
     return (
         <div className="mainContainer">
-                 <div  className="selectContainer">From: {from}
-                 <select className="select" onChange={(e)=> setFrom(e.target.value)}> 
-                            {options.map(function(a) {
-                                return (
-                                    <option key={a.code} value={a.code}>{a.name}</option>
-                                );
-                            })}
-                            </select>
-                 </div>
-                   <textarea cols="30" rows="10" className="textArea" onInput={(e)=>setInputText(e.target.value)}></textarea>
-                           <div className="selectContainer">To: {to}
-                                <select className="select" onChange={(e)=> setTo(e.target.value)}> To:
-                                    {options.map(function(a) {
-                                        return (
-                                            <option key={a.code} value={a.code}>{a.name}</option>
-                                        );
-                                    })}
-                                    </select>
-                           </div>
-                    <textarea cols="30" rows="10" className="textArea" value={onputText}></textarea>
-                    <button className="button" onClick={traslateText} >Translate</button>
+            <div className="selectContainer">From: {from}
+                <select className="select" onChange={(e) => setFrom(e.target.value)}>
+                    {options.map(function (a) {
+                        return (
+                            <option key={a.code} value={a.code}>{a.name}</option>
+                        );
+                    })}
+                </select>
+            </div>
+            <textarea cols="30" rows="10" className="textArea" onInput={(e) => setInputText(e.target.value)}></textarea>
+            <div className="selectContainer">To: {to}
+                <select className="select" onChange={(e) => setTo(e.target.value)}> To:
+                                    {options.map(function (a) {
+                    return (
+                        <option key={a.code} value={a.code}>{a.name}</option>
+                    );
+                })}
+                </select>
+            </div>
+            <textarea cols="30" rows="10" className="textArea" value={onputText}></textarea>
+            <button className="button" onClick={traslateText} >Translate</button>
         </div>
     )
 }

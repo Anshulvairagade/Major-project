@@ -108,9 +108,10 @@ const Signup = () => {
                 position:"top",
               });
 
-              localStorage.setItem('userInfo',JSON.stringify(data));
+              localStorage.setItem("userInfo", JSON.stringify(data));
+              history.push('/chat');
               setLoading(false);
-              history.push('/');
+
         } catch (error) {
             toast({
                 title: 'Error Occured',

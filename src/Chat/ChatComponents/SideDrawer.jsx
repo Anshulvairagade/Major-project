@@ -121,8 +121,8 @@ const SideDrawer = () => {
                            </Text>
                        </Button>    
                    </Tooltip>
-                   <Text fontSize="2xl" fontFamily="Roboto">
-                       Baat-Chit
+                   <Text fontSize="2xl" fontFamily="Roboto" d="flex">
+                       Baat-Chit <img src="assets/logo.png" className="logoImage" />
                    </Text>
                    <div>
                        <Menu>
