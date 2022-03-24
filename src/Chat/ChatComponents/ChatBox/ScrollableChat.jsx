@@ -99,8 +99,10 @@ const ScrollableChat = forwardRef(({ messages, input, output }, ref) => {
                         //   console.log(res.status);
                         item["value"] = res.data.translatedText;
                         item["lang"] = output;
+                        if ( i * 200 == status) {
                            //  console.log('Translated')
                            setChatLoading(false);
+                        }
                      })
                }
             }
