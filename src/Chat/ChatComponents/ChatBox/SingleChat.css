@@ -4,3 +4,32 @@
     overflow-y: scroll;
     scrollbar-width: none;
 }
+.selection , .firstSelection, .secondSelection{
+    display: flex;
+    align-items: center;
+}
+
+.firstSelection, .secondSelection{
+    padding-right: 10px;
+}
+.selection p {
+    font-size: 17px;
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+}
+.selection select{
+    font-size: 15px;
+    outline: none;
+    border: 2px solid #cdcdcd;
+    height: 27px;
+    background: aliceblue;
+}
+
+.translate{
+    font-size: 15px;
+    background: aliceblue;
+    padding: 5px 20px;
+    border: 2px solid #9c9c9c;
+    border-radius: 2px;
+}

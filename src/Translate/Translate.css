@@ -1,27 +1,3 @@
 .mainContainer{
     display: grid;
 }
-.textArea{
-    border: 2px solid;
-    width: 50%;
-    height: 150px;
-    margin: 20px auto;
-}
-.select{
-    border: 2px solid;
-    width: 50%;
-    height: 30px;
-    margin: 20px auto;
-}
-.button{
-    border: 2px solid;
-    padding: 5px 10px;   
-    width: 7rem;
-    margin: auto;
-    background: aliceblue;
-}
-.selectContainer{
-    width: 100%;
-    justify-content: center;
-    display: flex;
-}

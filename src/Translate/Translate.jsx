@@ -15,13 +15,25 @@ const Translate = () => {
 
     const data = [
         {
-            name: "What are you doing"
-        }
-        , {
-            name: "I am working"
+            name: "Hey"
         },
-        , {
-            name: "Okay, then bye"
+         {
+            name: "How are you?"
+        },
+         {
+            name: "I am fine"
+        },
+        {
+            name: "What about you"
+        },
+        {
+            name: "I am also fine"
+        },
+        {
+            name: "Okay"
+        },
+        {
+            name: "Bye"
         }
     ]
 
@@ -50,17 +62,16 @@ const Translate = () => {
                     }).then(res => {
                         output.push(res.data);
                         // output = output.reverse()
-                        setGetData(true);
+                        // console.log( item.name ,' = ' ,res.data);
                         console.log(output);
-                        setOnputText(
+                         setOnputText(
                             output.map((result) => {
                                 return result.translatedText;
                             })
                         );
                     })
             }
-
-
+            setGetData(true);
         })
     }
 
@@ -70,6 +81,7 @@ const Translate = () => {
                 headers: { 'accept': 'application/json' }
             }).then(res => {
                 setOptions(res.data)
+                console.log(res.data);
             })
     }, [])
 
