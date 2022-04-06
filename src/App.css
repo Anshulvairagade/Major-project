@@ -15,7 +15,9 @@
     width: 100vw;
     background: #f5f7fb;
 }
-
+.chakra-modal__content{
+    background: aliceblue !important;
+}
 ::-webkit-scrollbar{
     width: 0px;
 }

@@ -20,3 +20,32 @@
     font-size: 13px !important;
     font-weight: 500 !important;
 }
+.notificationBadge{
+    height: 18px !important;
+    width: 18px !important;
+    background: red;
+    color: white;
+    border-radius: 82%;
+    display: flex;
+    /* margin-top: 14px; */
+    margin-bottom: -15px;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    z-index: 1;
+    margin-left: 1rem;
+}
+.chakra-menu__menu-list{
+    background: #393f93 !important;
+    font-family: 'Montserrat';
+}
+.chakra-menu__menuitem, .chakra-menu__menu-list{
+    color: white !important;
+    font-size: 14px;
+    font-weight: 500 !important;
+    border-radius: 4px;
+}
+.chakra-menu__menuitem:hover{
+    color: black !important;
+    background: #f5f7fb !important;
+}

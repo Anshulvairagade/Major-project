@@ -17,13 +17,14 @@ import Loader from '../../components/Loader/Loader';
 import  UserListItem  from '../../components/User Avatar/UserListItem'
 import { Spinner } from '@chakra-ui/spinner';
 import './SideDrawer.css'
+import { getSender } from './Config/ChatLogic';
 
 
 
 
 const SideDrawer = () => {
 
-    const {user, setSelectedChat,chats, setChats} = ChatState();
+    const {user, setSelectedChat,chats, setChats, notification, setNotification} = ChatState();
 //   const user = JSON.parse(localStorage.getItem("userInfo"));
 
 
@@ -95,7 +96,7 @@ const SideDrawer = () => {
 
                 if(!chats.find((c)=> c._id === data._id)) setChats([data, ...chats]);
 
-               //  console.log(data);
+               //  // console.log(data);
                 setSelectedChat(data);
                 setChatLoading(false);
                 onClose();
@@ -128,8 +129,24 @@ const SideDrawer = () => {
                    <div>
                        <Menu>
                            <MenuButton p={1}>
-                               <BellIcon fontSize="2xl" margin={1}></BellIcon>
+                               <span className="notificationBadge">{notification.length}</span>
+                               <BellIcon fontSize="2xl" margin={1} zIndex={0}></BellIcon>
                            </MenuButton>
+                           <MenuList pl={2} fontWeight="500">
+                               {!notification.length ? "No New Messages" : (
+                                   notification.map((notify) => (
+                                    <>   
+                                       <MenuItem key={notify._id} onClick={()=>{
+                                           setSelectedChat(notify.chat)
+                                           setNotification(notification.filter((n) => n !== notify))
+                                       }}>
+                                           {notify.chat.isGroupChat ? `New Message in ${notify.chat.chatName}` : `New Message from ${getSender(user, notify.chat.users)}`}
+                                       </MenuItem>
+                                       <hr/>
+                                     </>  
+                                   ))
+                               ) }
+                           </MenuList>
                        </Menu>
                        <Menu>
                            <MenuButton as={Button} rightIcon={<ChevronDownIcon></ChevronDownIcon>}>
@@ -170,7 +187,7 @@ const SideDrawer = () => {
                                 <Loader></Loader>
                             ): (
                                 searchResult?.map((item)=>(
-                                    // console.log(item);
+                                    // // console.log(item);
                                     <UserListItem 
                                     key={item._id}
                                     user={item}

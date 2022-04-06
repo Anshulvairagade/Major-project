@@ -9,7 +9,7 @@ import React from 'react'
 const ProfileModal = ({user, children}) => {
 
     const { isOpen, onOpen, onClose } = useDisclosure()
-     console.log(user);
+     // console.log(user);
     return (
         <>
             {
@@ -24,7 +24,7 @@ const ProfileModal = ({user, children}) => {
 
 
 
-            <Modal size="lg" isOpen={isOpen} onClose={onClose} isCentered>
+            <Modal size="lg"  isOpen={isOpen} onClose={onClose} isCentered className="modalBody">
         <ModalOverlay />
         <ModalContent h="410px">
           <ModalHeader

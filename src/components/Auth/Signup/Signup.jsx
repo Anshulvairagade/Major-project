@@ -30,7 +30,7 @@ const Signup = () => {
     }
 
     const postDetails = (picture) => {
-        console.log(picture)
+        // console.log(picture)
         setLoading(true);
         if(picture === undefined){
             toast({
@@ -52,10 +52,10 @@ const Signup = () => {
                 body:data,
             }).then((res)=> res.json()).then(data=>{
                 setPic(data.url.toString());
-                console.log(data.url.toString())
+                // console.log(data.url.toString())
                 setLoading(false);
             }).catch(error =>{
-                console.log(error);
+                // console.log(error);
                 setLoading(false);
             })
             

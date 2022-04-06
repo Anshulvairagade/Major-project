@@ -54,7 +54,7 @@ const Login = () => {
                 isClosable: true,
                 position:"top",
               });
-            // console.log(data);
+            // // console.log(data);
             
             localStorage.setItem("userInfo", JSON.stringify(data));
             setLoading(false);

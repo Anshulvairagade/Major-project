@@ -62,8 +62,8 @@ const Translate = () => {
                     }).then(res => {
                         output.push(res.data);
                         // output = output.reverse()
-                        // console.log( item.name ,' = ' ,res.data);
-                        console.log(output);
+                        // // console.log( item.name ,' = ' ,res.data);
+                        // console.log(output);
                          setOnputText(
                             output.map((result) => {
                                 return result.translatedText;
@@ -81,7 +81,7 @@ const Translate = () => {
                 headers: { 'accept': 'application/json' }
             }).then(res => {
                 setOptions(res.data)
-                console.log(res.data);
+                // console.log(res.data);
             })
     }, [])
 

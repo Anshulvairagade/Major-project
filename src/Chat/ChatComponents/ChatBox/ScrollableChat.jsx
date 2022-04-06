@@ -15,6 +15,7 @@ const ScrollableChat = forwardRef(({ messages, input, output }, ref) => {
    const { user } = ChatState();
    const [getData, setGetData] = useState(true);
    const [chatLoading, setChatLoading] = useState(false);
+   
 
    let status = 0;
 
@@ -24,73 +25,139 @@ const ScrollableChat = forwardRef(({ messages, input, output }, ref) => {
    useImperativeHandle(ref, () => ({
 
 
-      traslateText() {
+      traslateText(value) {
          // curl -X POST "https://libretranslate.com/translate" -H  "accept: application/json" -H  "Content-Type: application/x-www-form-urlencoded" -d "q=nitn&source=en&target=es&format=text&api_key=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+
          
-         let i = 0;
          const params = new URLSearchParams();
-         messages.map((item) => {
-            setChatLoading(true);
-            //   console.log(item.content);
-            if (getData) {
-               setGetData(false);
-               if (item.value != undefined && item.lang != output ) {
-                  i=i+1;
-                  params.delete('q');
-                  params.append('q', item.content);
-                  //  console.log(input,output);
-                  params.append('source', input);
-                  params.append('target', output);
-                  params.append('api_key', 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx');
+         if (value == "first") {
+            let i = 0;
+            messages.map((item) => {
+               setChatLoading(true);
+               //   // console.log(item.content);
+               if (getData) {
+                  setGetData(false);
+                  if (item.value != undefined && item.lang != output) {
+                     i = i + 1;
+                     params.delete('q');
+                     params.append('q', item.content);
+                     //  // console.log(input,output);
+                     params.append('source', input);
+                     params.append('target', output);
+                     params.append('api_key', 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx');
 
-                  axios.post('https://libretranslate.de/translate', params,
-                     {
-                        headers:
+                     axios.post('https://libretranslate.de/translate', params,
                         {
-                           'accept': 'application/json',
-                           'Content-Type': 'application/x-www-form-urlencoded'
-                        }
-                     }).then(res => {
-                        status = res.status + status;
-                        //   console.log(res.status);
-                        item["value"] = res.data.translatedText;
-                        item["Lang"] = output;
-                        if ( i * 200 == status) {
-                           //  console.log('Translated')
-                           setChatLoading(false);
-                        }
-                     })
-               }else if (item.value == undefined ){
-                  i=i+1;
-                  params.delete('q');
-                  params.append('q', item.content);
-                  //  console.log(input,output);
-                  params.append('source', input);
-                  params.append('target', output);
-                  params.append('api_key', 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx');
+                           headers:
+                           {
+                              'accept': 'application/json',
+                              'Content-Type': 'application/x-www-form-urlencoded'
+                           }
+                        }).then(res => {
+                           status = res.status + status;
+                           //   // console.log(res.status);
+                           item["value"] = res.data.translatedText;
+                           item["Lang"] = output;
+                           if (i * 200 == status) {
+                              //  // console.log('Translated')
+                              setChatLoading(false);
+                           }
+                        })
+                  } else if (item.value == undefined) {
+                     i = i + 1;
+                     params.delete('q');
+                     params.append('q', item.content);
+                     //  // console.log(input,output);
+                     params.append('source', input);
+                     params.append('target', output);
+                     params.append('api_key', 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx');
 
-                  axios.post('https://libretranslate.de/translate', params,
-                     {
-                        headers:
+                     axios.post('https://libretranslate.de/translate', params,
                         {
-                           'accept': 'application/json',
-                           'Content-Type': 'application/x-www-form-urlencoded'
-                        }
-                     }).then(res => {
-                       
-                        status = res.status + status;
-                        //   console.log(res.status);
-                        item["value"] = res.data.translatedText;
-                        item["lang"] = output;
-                        if ( i * 200 == status) {
-                           //  console.log('Translated')
-                           setChatLoading(false);
-                        }
-                     })
+                           headers:
+                           {
+                              'accept': 'application/json',
+                              'Content-Type': 'application/x-www-form-urlencoded'
+                           }
+                        }).then(res => {
+
+                           status = res.status + status;
+                           //   // console.log(res.status);
+                           item["value"] = res.data.translatedText;
+                           item["lang"] = output;
+                           if (i * 200 == status) {
+                              //  // console.log('Translated')
+                              setChatLoading(false);
+                           }
+                        })
+                  }
                }
-            }
-         });
+            });
+         }
+         if (value == "new") {
+            let i = 0;
+               setChatLoading(true);
+               //   // console.log(item.content);
+               if (getData) {
+                  setGetData(false);
+                  if (messages[messages.length-1].value != undefined && messages[messages.length-1] != output) {
+                     i = i + 1;
+                     params.delete('q');
+                     params.append('q', messages[messages.length-1].content);
+                     //  // console.log(input,output);
+                     params.append('source', input);
+                     params.append('target', output);
+                     params.append('api_key', 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx');
+
+                     axios.post('https://libretranslate.de/translate', params,
+                        {
+                           headers:
+                           {
+                              'accept': 'application/json',
+                              'Content-Type': 'application/x-www-form-urlencoded'
+                           }
+                        }).then(res => {
+                           status = res.status + status;
+                           //   // console.log(res.status);
+                           messages[messages.length-1]["value"] = res.data.translatedText;
+                           messages[messages.length-1]["Lang"] = output;
+                           if (i * 200 == status) {
+                              //  // console.log('Translated')
+                              setChatLoading(false);
+                           }
+                        })
+                  } else if (messages[messages.length-1].value == undefined) {
+                     i = i + 1;
+                     params.delete('q');
+                     params.append('q', messages[messages.length-1].content);
+                     //  // console.log(input,output);
+                     params.append('source', input);
+                     params.append('target', output);
+                     params.append('api_key', 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx');
+
+                     axios.post('https://libretranslate.de/translate', params,
+                        {
+                           headers:
+                           {
+                              'accept': 'application/json',
+                              'Content-Type': 'application/x-www-form-urlencoded'
+                           }
+                        }).then(res => {
+
+                           status = res.status + status;
+                           //   // console.log(res.status);
+                           messages[messages.length-1]["value"] = res.data.translatedText;
+                           messages[messages.length-1]["lang"] = output;
+                           if (i * 200 == status) {
+                              //  // console.log('Translated')
+                              setChatLoading(false);
+                           }
+                        })
+                  }
+               }
+         }
          setGetData(true);
+         console.log(messages);
       }
    }));
 
@@ -129,9 +196,9 @@ const ScrollableChat = forwardRef(({ messages, input, output }, ref) => {
                      style={{
                         backgroundColor: `${m.sender._id === user._id ? "#393f93" : "#f5f7fb"}`,
                         color: `${m.sender._id === user._id ? "white" : "black"}`,
-                        fontFamily:"Montserrat",
+                        fontFamily: "Montserrat",
                         borderRadius: "10px",
-                        fontSize:"14px",
+                        fontSize: "14px",
                         padding: "10px 15px",
                         maxWidth: "75%",
                         marginLeft: isSameSenderMargin(messages, m, i, user._id),

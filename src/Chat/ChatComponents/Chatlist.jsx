@@ -18,7 +18,7 @@ const ChatList = ({ fetchAgain }) => {
   const toast = useToast();
 
   const fetchChats = async () => {
-    // console.log(user._id);
+    // // console.log(user._id);
     try {
       const config = {
         headers: {
@@ -60,7 +60,7 @@ const ChatList = ({ fetchAgain }) => {
       <Box
         pb={3}
         px={3}
-        fontSize={{ base: "28px", md: "25px" }}
+        fontSize={{ base: "28px", md: "22px" }}
         fontFamily="Oswald"
         d="flex"
         w="100%"
@@ -72,7 +72,8 @@ const ChatList = ({ fetchAgain }) => {
         <GroupChatModal>
           <Button
             d="flex"
-            fontSize={{ base: "11px", md: "10px", lg: "11px" }}
+            fontSize={{ base: "10px", md: "7px", lg: "11px" }}
+            className="groupButton"
             rightIcon={<AddIcon />}
             bg="#393f93"
             color="white"

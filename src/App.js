@@ -21,7 +21,7 @@ function App() {
 
   const location = useLocation();
   const currentPath = location.pathname;
-  console.log(currentPath);
+  // console.log(currentPath);
   return (
        <div className="App" >
          <Route path='/chat' component={Chat} exact></Route>

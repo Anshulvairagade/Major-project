@@ -30,7 +30,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
     const [message, setMessage] = useState([]);
     const [newMessage, setNewMessage] = useState([]);
     const [loading, setLoading] = useState(false);
-    const { user, selectedChat, setSelectedChat } = ChatState();
+    const { user, selectedChat, setSelectedChat, notification , setNotification } = ChatState();
     const [options, setOptions] = useState([]);
     const [to, setTo] = useState('en');
     const [from, setFrom] = useState('en');
@@ -93,7 +93,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                 headers: { 'accept': 'application/json' }
             }).then(res => {
                 setOptions(res.data)
-                console.log(res.data);
+                // console.log(res.data);
             });
 
     }, [selectedChat]);
@@ -102,15 +102,19 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
     useEffect(() => {
         socket.on("message recieved", (newMessageRecieved) => {
             if (!selectedChatCompare || selectedChatCompare._id !== newMessageRecieved.chat._id) {
-
-            } else {
+                      if(!notification.includes(newMessageRecieved)){
+                          setNotification([newMessageRecieved, ...notification]);
+                          setFetchAgain(!fetchAgain)
+                      }
+            }
+            else {
                 setMessage([...message, newMessageRecieved])
             }
         })
     })
 
 
-
+  // console.log(notification);
 
 
     const sendMessage = async (event) => {
@@ -129,9 +133,10 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                     content: newMessage,
                     chatId: selectedChat._id
                 }, config);
-                console.log(data);
+                // console.log(data);
                 socket.emit('new message', data)
-                setMessage([...message, data])
+                setMessage([...message, data]);
+                childRef.current.traslateText("new")
             } catch (error) {
                 toast({
                     title: "Error Occured",
@@ -195,7 +200,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                         {/* <ProfileModal user={getSenderFull(user,selectedChat.users)} className="profileModalMobile"/> */}
 
                         {!selectedChat.isGroupChat ? (<div className="chatHeader">
-                            <div className="chatFriendHeader">
+                            <div className="chatFriendHeader d-flex">
                                 <p className="friendName">{getSender(user, selectedChat.users)} </p>
                                 <div className="profileModalMobile">
                                      <ProfileModal user={getSenderFull(user, selectedChat.users)} />
@@ -223,11 +228,11 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                                         })}
                                     </select>
                                 </div>
-                                <button className="translate" onClick={() => childRef.current.traslateText()}>Translate </button>
+                                <button className="translate" onClick={() => childRef.current.traslateText("first")}>Translate </button>
                             </div>
-                            <div className="profileModal">
+                            {/* <div className="profileModal">
                                      <ProfileModal user={getSenderFull(user, selectedChat.users)} />
-                          </div>
+                          </div> */}
                         </div>) : (
                             <>{selectedChat.chatName.toUpperCase()}
                                 <UpdateGroupChatModal

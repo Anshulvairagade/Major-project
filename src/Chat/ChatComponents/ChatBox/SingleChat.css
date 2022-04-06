@@ -46,26 +46,26 @@
     color: white;
     font-weight: 500;
 }
-.profileModal{
-    display: block;
-}
+
 .profileModalMobile{
-    display: none;
+    display: block;
  }
 .messageInput{
     outline: none;
     box-shadow: none;
     border: none;
 }
+.chatHeader{
+    width: 100%;
+}
+.chatFriendHeader{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
 
 @media (max-width:768px) {
-    .profileModal{
-        display: none !important;
-    }
-    .profileModalMobile{
-       display: block;
-       width: 10%;
-    }
+   
     .friendName{
         width: 90%;
     }
