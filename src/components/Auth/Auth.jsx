@@ -23,8 +23,8 @@ function Auth() {
            <Box bg="White" w="100%" p={4} borderRadius="lg" borderWidth="1px">
            <Tabs variant='soft-rounded' >
                 <TabList mb="1em">
-                    <Tab width="50%" borderWidth="1px">Login</Tab>
-                    <Tab width="50%" borderWidth="1px">Signup</Tab>
+                    <Tab width="50%" borderWidth="1px" mr="5px">Login</Tab>
+                    <Tab width="50%" borderWidth="1px" ml="5px">Signup</Tab>
                 </TabList>
                 <TabPanels>
                     <TabPanel>
