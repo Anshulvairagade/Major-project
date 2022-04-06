@@ -1,0 +1,11 @@
+.inputFile{
+    width: 100%;
+    background: aliceblue;
+    border-radius: 8px;
+    cursor: pointer;  
+    color: #2c5282; 
+}
+.inputFile input{
+    width: 100%;  
+    cursor: pointer;
+}

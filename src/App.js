@@ -1,10 +1,8 @@
-import Home from "./pages/home/Home";
-import {Route, useHistory} from "react-router";
+import {Route, useHistory, useLocation} from "react-router";
 import "./App.css"
 import Chat from "./Chat/Chat";
 import Auth from "./components/Auth/Auth";
 import { useEffect } from "react";
-import Translate from "./Translate/Translate";
 
 
 
@@ -20,12 +18,14 @@ function App() {
     };
   }, []);
 
+
+  const location = useLocation();
+  const currentPath = location.pathname;
+  console.log(currentPath);
   return (
-       <div className="App">
-         <Route path='/' component={Home} exact></Route>
+       <div className="App" >
          <Route path='/chat' component={Chat} exact></Route>
          <Route path='/login' component={Auth}></Route>
-         <Route path='/translate' component={Translate}></Route>
        </div>
   )
     

@@ -1,3 +1,6 @@
+.chakra-form__required-indicator{
+    display: none;
+}
 .loginHeading{
     font-family: 'Roboto';
     font-size: 2.5rem;

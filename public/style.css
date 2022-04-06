@@ -10,6 +10,11 @@
     margin-left: 7px;
     border-radius: 50%;
 }
+.App{
+    background-image: url('./../public/assets/loginBackground.jpg') ;
+    height: 100vh;
+    width: 100vw;
+}
 
 @media (max-width:480px){
     .logoImage{

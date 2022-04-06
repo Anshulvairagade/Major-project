@@ -6,6 +6,7 @@ import React, { useState } from 'react'
 import { useToast } from '@chakra-ui/react'
 import axios from 'axios'
 import { useHistory } from 'react-router'
+import './Signup.css'
 
 const Signup = () => {
 
@@ -131,6 +132,7 @@ const Signup = () => {
                  <Input 
                      placeholder="Enter Your Name"
                      onChange={(e)=>setName(e.target.value)}
+                     borderRadius="8px"
                      ></Input>
              </FormControl>
              <FormControl isRequired>
@@ -138,6 +140,7 @@ const Signup = () => {
                  <Input 
                      placeholder="Enter Your Email"
                      onChange={(e)=>setEmail(e.target.value)}
+                     borderRadius="8px"
                      ></Input>
              </FormControl>
              <FormControl isRequired>
@@ -147,6 +150,7 @@ const Signup = () => {
                         type={ show? "text" :"password"}
                         placeholder="Enter Passoword"
                         onChange={(e)=>setPassword(e.target.value)}
+                        borderRadius="8px"
                         ></Input>
                         <InputRightElement width="4.5rem">
                             <Button h="1.75rem" size="sm" onClick={showText}>
@@ -162,6 +166,7 @@ const Signup = () => {
                         type={ showConfirm? "text" :"password"}
                         placeholder="Confirm Passoword"
                         onChange={(e)=>setConfirm(e.target.value)}
+                        borderRadius="8px"
                         ></Input>
                         <InputRightElement width="4.5rem">
                             <Button h="1.75rem" size="sm" onClick={showConfirmText}>
@@ -172,17 +177,26 @@ const Signup = () => {
              </FormControl>
              <FormControl isRequired>
                  <FormLabel>Add Profile Picture</FormLabel>
-                 <Input 
+                 {/* <Input 
                      type="file"
                      p={1.5}
                      accept="image/*"
                      placeholder="Upload Image"
                      onChange={(e) => postDetails(e.target.files[0])}
-                     ></Input>
+                     ></Input> */}
+                     <button className="inputFile" placeholder="Add Your Profile +">
+                     
+                         <input
+                          type="file"
+                          accept="image/*"
+                          placeholder="Upload Image"
+                          onChange={(e) => postDetails(e.target.files[0])} />
+                     </button>
              </FormControl>
              <Button 
-             colorScheme="blue"
+             bg="#2083f6"
              width="100%"
+             color="white"
              style={{marginTop:15}}
              onClick={submitHandler}
              isLoading={loading}

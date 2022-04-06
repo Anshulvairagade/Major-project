@@ -81,6 +81,7 @@ const Login = () => {
                  <Input 
                      placeholder="Enter Your Email"
                      onChange={(e)=>setEmail(e.target.value)}
+                     borderRadius="8px"
                      ></Input>
              </FormControl>
              <FormControl isRequired>
@@ -90,6 +91,7 @@ const Login = () => {
                         type={ show? "text" :"password"}
                         placeholder="Enter Passoword"
                         onChange={(e)=>setPassword(e.target.value)}
+                        borderRadius="8px"
                         ></Input>
                         <InputRightElement width="4.5rem">
                             <Button h="1.75rem" size="sm" onClick={showText}>
@@ -99,10 +101,11 @@ const Login = () => {
                   </InputGroup>
              </FormControl>
              <Button 
-             colorScheme="blue"
+             bg="#2083f6"
              width="100%"
              style={{marginTop:15}}
              onClick={submitHandler}
+             color="white"
              >
                  Log-In
              </Button>
