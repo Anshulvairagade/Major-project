@@ -22,7 +22,7 @@ import { Avatar } from '@chakra-ui/avatar';
 
 
 
-const ENDPOINT = "http://localhost:9000";
+const ENDPOINT = "https://baatcheett.herokuapp.com/";
 let socket, selectedChatCompare;
 
 const SingleChat = ({ fetchAgain, setFetchAgain }) => {
