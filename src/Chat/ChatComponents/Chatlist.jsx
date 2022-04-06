@@ -4,10 +4,11 @@ import { useToast } from "@chakra-ui/toast";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import GroupChatModal from "./GroupChatModal";
-import { Button } from "@chakra-ui/react";
+import { Avatar, Button } from "@chakra-ui/react";
 import { getSender } from "./Config/ChatLogic";
 import Loader from "../../components/Loader/Loader";
 import { ChatState } from "../../components/Context/ChatProvider";
+import './Chatlist.css'
 
 const ChatList = ({ fetchAgain }) => {
   const [loggedUser, setLoggedUser] = useState();
@@ -50,28 +51,32 @@ const ChatList = ({ fetchAgain }) => {
       d={{ base: selectedChat ? "none" : "flex", md: "flex" }}
       flexDir="column"
       alignItems="center"
-      p={3}
+      pt={3}
+      px={3}
       bg="white"
       w={{ base: "100%", md: "31%" }}
       borderRadius="lg"
-      borderWidth="1px"
     >
       <Box
         pb={3}
         px={3}
-        fontSize={{ base: "28px", md: "30px" }}
-        fontFamily="Work sans"
+        fontSize={{ base: "28px", md: "25px" }}
+        fontFamily="Oswald"
         d="flex"
         w="100%"
         justifyContent="space-between"
         alignItems="center"
+        fontWeight="500"
       >
         My Chats
         <GroupChatModal>
           <Button
             d="flex"
-            fontSize={{ base: "17px", md: "10px", lg: "17px" }}
+            fontSize={{ base: "11px", md: "10px", lg: "11px" }}
             rightIcon={<AddIcon />}
+            bg="#393f93"
+            color="white"
+            fontFamily="Montserrat"
           >
             New Group Chat
           </Button>
@@ -81,7 +86,8 @@ const ChatList = ({ fetchAgain }) => {
         d="flex"
         flexDir="column"
         p={3}
-        bg="#F8F8F8"
+        my={3}
+        bg="#e4e4e4"
         w="100%"
         h="100%"
         borderRadius="lg"
@@ -90,29 +96,29 @@ const ChatList = ({ fetchAgain }) => {
         {chats ? (
           <Stack overflowY="scroll">
             {chats.map((chat) => (
+
               <Box
                 onClick={() => setSelectedChat(chat)}
                 cursor="pointer"
-                bg={selectedChat === chat ? "#38B2AC" : "#E8E8E8"}
-                color={selectedChat === chat ? "white" : "black"}
-                px={3}
-                py={2}
+                bg={selectedChat === chat ? "#b7d3ff" : "#f5f7fb"}
+                p={3}
                 borderRadius="lg"
                 key={chat._id}
+                className="chatListBox"
               >
-                <Text>
-                  {!chat.isGroupChat
-                    ? getSender(loggedUser, chat.users)
-                    : chat.chatName}
-                </Text>
-                {chat.latestMessage && (
-                  <Text fontSize="xs">
-                    <b>{chat.latestMessage.sender.name} : </b>
-                    {chat.latestMessage.content.length > 50
-                      ? chat.latestMessage.content.substring(0, 51) + "..."
-                      : chat.latestMessage.content}
+                  <Text  fontFamily="Oswald">
+                    {!chat.isGroupChat
+                      ? getSender(loggedUser, chat.users)
+                      : chat.chatName}
                   </Text>
-                )}
+                  {chat.latestMessage && (
+                    <Text fontSize="xs" fontFamily="Montserrat">
+                      <b>{chat.latestMessage.sender.name} : </b>
+                      {chat.latestMessage.content.length > 50
+                        ? chat.latestMessage.content.substring(0, 51) + "..."
+                        : chat.latestMessage.content}
+                    </Text>
+                  )}
               </Box>
             ))}
           </Stack>

@@ -16,18 +16,17 @@ const ScrollableChat = forwardRef(({ messages, input, output }, ref) => {
    const [getData, setGetData] = useState(true);
    const [chatLoading, setChatLoading] = useState(false);
 
-
-
-
-   let length = messages.length;
    let status = 0;
 
+
+   // #157575 green
+   // #EAD7C7
    useImperativeHandle(ref, () => ({
 
 
       traslateText() {
          // curl -X POST "https://libretranslate.com/translate" -H  "accept: application/json" -H  "Content-Type: application/x-www-form-urlencoded" -d "q=nitn&source=en&target=es&format=text&api_key=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
-
+         
          let i = 0;
          const params = new URLSearchParams();
          messages.map((item) => {
@@ -52,15 +51,6 @@ const ScrollableChat = forwardRef(({ messages, input, output }, ref) => {
                            'Content-Type': 'application/x-www-form-urlencoded'
                         }
                      }).then(res => {
-                        // console.log(item.content, res.data.translatedText);
-                        // output = output.reverse()
-                        //            console.log( item ,' = ' ,res.data);
-                        //  console.log(output);
-                        //   setOnputText(
-                        //      output.map((result) => {
-                        //          return result.translatedText;
-                        //      })
-                        //  );
                         status = res.status + status;
                         //   console.log(res.status);
                         item["value"] = res.data.translatedText;
@@ -71,6 +61,7 @@ const ScrollableChat = forwardRef(({ messages, input, output }, ref) => {
                         }
                      })
                }else if (item.value == undefined ){
+                  i=i+1;
                   params.delete('q');
                   params.append('q', item.content);
                   //  console.log(input,output);
@@ -86,15 +77,7 @@ const ScrollableChat = forwardRef(({ messages, input, output }, ref) => {
                            'Content-Type': 'application/x-www-form-urlencoded'
                         }
                      }).then(res => {
-                        // console.log(item.content, res.data.translatedText);
-                        // output = output.reverse()
-                        //            console.log( item ,' = ' ,res.data);
-                        //  console.log(output);
-                        //   setOnputText(
-                        //      output.map((result) => {
-                        //          return result.translatedText;
-                        //      })
-                        //  );
+                       
                         status = res.status + status;
                         //   console.log(res.status);
                         item["value"] = res.data.translatedText;
@@ -144,9 +127,12 @@ const ScrollableChat = forwardRef(({ messages, input, output }, ref) => {
                   }
                   <span
                      style={{
-                        backgroundColor: `${m.sender._id === user._id ? "#BEE3F8" : "#B9F5D0"}`,
-                        borderRadius: "20px",
-                        padding: "5px 15px",
+                        backgroundColor: `${m.sender._id === user._id ? "#393f93" : "#f5f7fb"}`,
+                        color: `${m.sender._id === user._id ? "white" : "black"}`,
+                        fontFamily:"Montserrat",
+                        borderRadius: "10px",
+                        fontSize:"14px",
+                        padding: "10px 15px",
                         maxWidth: "75%",
                         marginLeft: isSameSenderMargin(messages, m, i, user._id),
                         marginTop: isSameUser(messages, m, i, user._id) ? 5 : 'auto',

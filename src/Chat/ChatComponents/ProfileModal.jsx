@@ -9,7 +9,7 @@ import React from 'react'
 const ProfileModal = ({user, children}) => {
 
     const { isOpen, onOpen, onClose } = useDisclosure()
-
+     console.log(user);
     return (
         <>
             {
@@ -29,9 +29,9 @@ const ProfileModal = ({user, children}) => {
         <ModalContent h="410px">
           <ModalHeader
             fontSize="40px"
-            fontFamily="Roboto"
+            fontFamily="Oswald"
             d="flex"
-            justifyContent="center"
+            justifyContent="left"
           >{user.name}</ModalHeader>
           <ModalCloseButton />
           <ModalBody
@@ -48,7 +48,7 @@ const ProfileModal = ({user, children}) => {
               />
               <Text
                   fontSize={{base:"28px", md:"30px"}}
-                  fontFamily="Roboto"  
+                  fontFamily="Montserrat"  
               >{user.email}</Text>
           </ModalBody>
 

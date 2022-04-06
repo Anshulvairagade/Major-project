@@ -15,8 +15,10 @@ function App() {
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("userInfo"));
 
-    if (user) history.push("/chat");
-  }, [history]);
+    if (user){ 
+      history.push("/chat");
+    };
+  }, []);
 
   return (
        <div className="App">

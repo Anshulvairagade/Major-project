@@ -16,6 +16,7 @@ import axios from 'axios';
 import Loader from '../../components/Loader/Loader';
 import  UserListItem  from '../../components/User Avatar/UserListItem'
 import { Spinner } from '@chakra-ui/spinner';
+import './SideDrawer.css'
 
 
 
@@ -112,16 +113,16 @@ const SideDrawer = () => {
 
     return (
         <>
-              <Box d="flex" justifyContent="space-between" alignItems="center" bg="white" w="100%" p="5px 10px 5px 10px" borderWidth="5px">
+              <Box d="flex" justifyContent="space-between" alignItems="center" bg="#f5f7fb" w="100%" p="15px 10px 15px 10px" borderWidth="0px">
                   <Tooltip label="Search Your Friends" hasArrow placement="bottom-end">
-                        <Button variant="ghost" onClick={onOpen}>
+                        <Button variant="ghost" onClick={onOpen} bg="white">
                            <i className="fas fa-search"></i> 
-                           <Text d={{base:"none",md:"flex"}} px="4">
+                           <Text d={{base:"none",md:"flex"}} px="4" fontFamily="Montserrat" className="searchText">
                                Search Friends
                            </Text>
                        </Button>    
                    </Tooltip>
-                   <Text fontSize="2xl" fontFamily="Roboto" d="flex">
+                   <Text fontSize="3xl" fontFamily="Oswald" d="flex" fontWeight="500">
                        Baat-Chit <img src="assets/logo.png" className="logoImage" />
                    </Text>
                    <div>
@@ -146,10 +147,10 @@ const SideDrawer = () => {
                    </div>
               </Box>  
 
-              <Drawer placement="left" onClose={onClose} isOpen={isOpen}>
+              <Drawer placement="left" onClose={onClose} isOpen={isOpen} bg="#f5f7fb" >
                   <DrawerOverlay />
                       <DrawerContent>
-                          <DrawerHeader borderBottom="1px">
+                          <DrawerHeader borderBottom="1px" fontFamily="Oswald" fontWeight="500" boxShadow="none">
                               Search Friends
                           </DrawerHeader>
                           <DrawerBody>
@@ -157,10 +158,13 @@ const SideDrawer = () => {
                                 <Input
                                 placeholder="Search by Name or Email"
                                 mr={2}
+                                bg="white"
                                 value={search}
+                                className="searchFriend"
+                                fontFamily="Montserrat"
                                 onChange={(e)=>setSearch(e.target.value)}
                                 />
-                                <Button onClick={handleSearch}>Go</Button>
+                                <Button onClick={handleSearch} className="searchButton">Go</Button>
                             </Box>
                             {loading ? (
                                 <Loader></Loader>
