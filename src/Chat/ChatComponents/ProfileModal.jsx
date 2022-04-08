@@ -8,7 +8,10 @@ import React from 'react'
 
 const ProfileModal = ({user, children}) => {
 
-    const { isOpen, onOpen, onClose } = useDisclosure()
+    const { isOpen, onOpen, onClose } = useDisclosure();
+
+    let country = JSON.parse(localStorage.getItem("userInfo")).country;
+    let language = JSON.parse(localStorage.getItem("userInfo")).language;
      // console.log(user);
     return (
         <>
@@ -26,7 +29,7 @@ const ProfileModal = ({user, children}) => {
 
             <Modal size="lg"  isOpen={isOpen} onClose={onClose} isCentered className="modalBody">
         <ModalOverlay />
-        <ModalContent h="410px">
+        <ModalContent >
           <ModalHeader
             fontSize="40px"
             fontFamily="Oswald"
@@ -37,19 +40,33 @@ const ProfileModal = ({user, children}) => {
           <ModalBody
              d="flex"
              flexDir="column"
-             alignItems="center"
-             justifyContent="space-between"
+            
           >
               <Image
                  borderRadius="full"
                  boxSize="150px"
                  src={user.pic}
-                 alt=""
+                 alt="user pic"
+                 margin="auto"
               />
               <Text
-                  fontSize={{base:"28px", md:"30px"}}
-                  fontFamily="Montserrat"  
-              >{user.email}</Text>
+                  fontSize={{base:"28px", md:"20px"}}
+                  fontFamily="Montserrat"
+                  mt="4"  
+                  textAlign="start"
+              >UserName :- {user.email}</Text>
+              <Text
+                  fontSize={{base:"15px", md:"15px"}}
+                  fontFamily="Montserrat"
+                  textAlign="start"
+                  mt="2"   
+              >Country :- {user.country}</Text>
+              <Text
+                  fontSize={{base:"15px", md:"15px"}}
+                  fontFamily="Montserrat"
+                  textAlign="start"  
+                  mt="2" 
+              >Language :- {user.language}</Text>
           </ModalBody>
 
           <ModalFooter>

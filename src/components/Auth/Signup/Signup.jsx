@@ -15,6 +15,8 @@ const Signup = () => {
     const [password, setPassword] = useState();
     const [confirm, setConfirm] = useState();
     const [pic, setPic] = useState();
+    const [country, setCountry] = useState();
+    const [language, setLanguage] = useState();
     const [show, setShow] = useState(false); 
     const [showConfirm, setShowConfirm] = useState(false); 
     const [loading, setLoading] = useState(false);
@@ -100,7 +102,7 @@ const Signup = () => {
                     "Content-type":"application/json",
                 },
             };
-            const {data} = await axios.post('/api/user',{name,email,password,pic},config);
+            const {data} = await axios.post('/api/user',{name,email,password,pic,country,language},config);
             toast({
                 title: 'Registration Successful',
                 status: 'success',
@@ -108,12 +110,14 @@ const Signup = () => {
                 isClosable: true,
                 position:"top",
               });
-
+              console.log(data);
               localStorage.setItem("userInfo", JSON.stringify(data));
-              history.push('/chat');
+              history.push("/chats");
+              window.location.reload();
               setLoading(false);
 
         } catch (error) {
+            setLoading(false);
             toast({
                 title: 'Error Occured',
                 description:error.response.data.message,
@@ -173,6 +177,25 @@ const Signup = () => {
                                 {showConfirm ? "Hide" : "Show"}
                             </Button>
                         </InputRightElement>
+                  </InputGroup>
+             </FormControl>
+             <FormControl isRequired>
+                 <FormLabel>Enter Your Country</FormLabel>
+                 <InputGroup>
+                    <Input 
+                        placeholder="Example : India"
+                        onChange={(e)=>setCountry(e.target.value)}
+                        borderRadius="8px"
+                        ></Input>
+                  </InputGroup>
+             </FormControl> <FormControl isRequired>
+                 <FormLabel>Enter Your Native Language</FormLabel>
+                 <InputGroup>
+                    <Input 
+                        placeholder="Your Native Language"
+                        onChange={(e)=>setLanguage(e.target.value)}
+                        borderRadius="8px"
+                        ></Input>
                   </InputGroup>
              </FormControl>
              <FormControl isRequired>

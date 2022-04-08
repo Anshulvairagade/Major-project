@@ -22,7 +22,7 @@ import { Avatar } from '@chakra-ui/avatar';
 
 
 
-const ENDPOINT = "https://baatcheett.herokuapp.com/";
+const ENDPOINT = "http://127.0.0.1:9000";
 let socket, selectedChatCompare;
 
 const SingleChat = ({ fetchAgain, setFetchAgain }) => {
@@ -100,6 +100,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
 
 
     useEffect(() => {
+      
         socket.on("message recieved", (newMessageRecieved) => {
             if (!selectedChatCompare || selectedChatCompare._id !== newMessageRecieved.chat._id) {
                       if(!notification.includes(newMessageRecieved)){
@@ -108,12 +109,41 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                       }
             }
             else {
-                setMessage([...message, newMessageRecieved])
+                setMessage([...message, newMessageRecieved]);
             }
         })
     })
 
+        //  let  translateNewMessage = (data) =>      {
+        //         let status = 0;
+        //          const params = new URLSearchParams();
+        //             params.delete('q');
+        //             params.append('q', data.content);
+        //             //  // console.log(input,output);
+        //             params.append('source', from);
+        //             params.append('target', to);
+        //             params.append('api_key', 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx');
 
+        //             axios.post('https://libretranslate.de/translate', params,
+        //                {
+        //                   headers:
+        //                   {
+        //                      'accept': 'application/json',
+        //                      'Content-Type': 'application/x-www-form-urlencoded'
+        //                   }
+        //                }).then(res => {
+
+        //                   status = res.status + status;
+        //                   //   // console.log(res.status);
+        //                   data["value"] = res.data.translatedText;
+        //                   data["lang"] = to;
+        //                 //   if (i * 200 == status) {
+        //                      //  // console.log('Translated')
+        //                 //      setChatLoading(false);
+        //                 //   }
+        //                })
+        //             setMessage([...message, data]);
+        //         }
   // console.log(notification);
 
 
@@ -134,9 +164,9 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                     chatId: selectedChat._id
                 }, config);
                 // console.log(data);
-                socket.emit('new message', data)
+                socket.emit('new message', data);
+                console.log(data);
                 setMessage([...message, data]);
-                childRef.current.traslateText("new")
             } catch (error) {
                 toast({
                     title: "Error Occured",
@@ -228,7 +258,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                                         })}
                                     </select>
                                 </div>
-                                <button className="translate" onClick={() => childRef.current.traslateText("first")}>Translate </button>
+                                <button className="translate" onClick={() => childRef.current.traslateText()}>Translate </button>
                             </div>
                             {/* <div className="profileModal">
                                      <ProfileModal user={getSenderFull(user, selectedChat.users)} />
