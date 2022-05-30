@@ -12,19 +12,20 @@ function Auth() {
            d="flex"
            justifyContent="center"
            p={3}
-           bg={"white"}
+           background={"black"}
+           color={"#fdf5d3"}
            w="100%"
            m="70px 0 20px 0"
            borderRadius="lg"
-           borderWidth="1px"
+           borderWidth="0px"
            >
-               <Text className="loginHeading font-heading" d="flex" >Baat-Chit <img src="assets/logo.png" className="logoImage" /></Text>
+               <Text className="loginHeading font-heading" d="flex" color="#fdf5d3" >Baat-Chit <img src="assets/logo.png" className="logoImage" /></Text>
            </Box>
-           <Box bg="White" w="100%" p={4} borderRadius="lg" borderWidth="1px">
+           <Box bg="#fdf5d3" w="100%" p={4} borderRadius="lg" borderWidth="1px">
            <Tabs variant='soft-rounded' >
                 <TabList mb="1em">
-                    <Tab width="50%" borderWidth="1px" mr="5px">Login</Tab>
-                    <Tab width="50%" borderWidth="1px" ml="5px">Signup</Tab>
+                    <Tab className="authButton" width="50%" borderWidth="2px" borderColor="black" outline="none" boxShadow="none" mr="5px">Login</Tab>
+                    <Tab  className="authButton" width="50%" borderWidth="2px" borderColor="black"  outline="none" boxShadow="none"  ml="5px">Signup</Tab>
                 </TabList>
                 <TabPanels>
                     <TabPanel>

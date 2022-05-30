@@ -13,6 +13,10 @@
 .firstSelection, .secondSelection{
     padding-right: 10px;
 }
+.chatHeader{
+    background: #fdf5d3;
+    color: black;
+}
 .selection p {
     font-size: 17px;
     display: flex;
@@ -23,14 +27,14 @@
 .selection select{
     font-size: 13px;
     outline: none;
-    background: #fdf4f2;
+    background: black;
     width: 115px;
     border-radius: 22px;
     padding: 4px 5px;
-    border: 2px solid #ffbaba;
+    border: 2px solid #000000;
     font-family: 'Montserrat';
-    color: #160000;
-    font-weight: 500;
+    color: #fdf5d3;
+    font-weight: 700;
 }
 
 .selection select::after { 
@@ -40,12 +44,13 @@
 
 .translate{
     font-size: 15px;
-    background: #393f93;
+    background: black;
     padding: 5px 20px;
     border-radius: 6px;
-    color: white;
+    color: #fdf5d3;
     font-weight: 500;
 }
+
 
 .profileModalMobile{
     display: block;

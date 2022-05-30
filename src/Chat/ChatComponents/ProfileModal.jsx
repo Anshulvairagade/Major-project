@@ -21,7 +21,10 @@ const ProfileModal = ({user, children}) => {
                <IconButton
                   d={{base:"flex"}} 
                   icon={<ViewIcon></ViewIcon>}
-                  onClick={onOpen}>
+                  onClick={onOpen}
+                  background="black"
+                  color="#fdf5d3"
+                  >
                </IconButton>
            )}
 
@@ -54,23 +57,26 @@ const ProfileModal = ({user, children}) => {
                   fontFamily="Montserrat"
                   mt="4"  
                   textAlign="start"
-              >UserName :- {user.email}</Text>
+                  fontWeight="600"
+              >Username :- {user.email}</Text>
               <Text
                   fontSize={{base:"15px", md:"15px"}}
                   fontFamily="Montserrat"
                   textAlign="start"
-                  mt="2"   
-              >Country :- {user.country}</Text>
+                  mt="2"
+                  fontWeight="500"   
+              ><i class="fa fa-map-marker" aria-hidden="true"></i> &nbsp; {user.country}</Text>
               <Text
                   fontSize={{base:"15px", md:"15px"}}
                   fontFamily="Montserrat"
                   textAlign="start"  
                   mt="2" 
-              >Language :- {user.language}</Text>
+                  fontWeight="500"
+              ><i class="fa fa-globe" aria-hidden="true"></i>&nbsp; {user.language}</Text>
           </ModalBody>
 
           <ModalFooter>
-            <Button colorScheme='blue' mr={3} onClick={onClose}>
+            <Button colorScheme='blue' mr={3} onClick={onClose} background="black" color="#fdf5d3">
               Close
             </Button>
           </ModalFooter>

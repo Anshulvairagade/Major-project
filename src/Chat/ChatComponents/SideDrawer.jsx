@@ -114,9 +114,9 @@ const SideDrawer = () => {
 
     return (
         <>
-              <Box d="flex" justifyContent="space-between" alignItems="center" bg="#f5f7fb" w="100%" p="15px 10px 15px 10px" borderWidth="0px">
-                  <Tooltip label="Search Your Friends" hasArrow placement="bottom-end">
-                        <Button variant="ghost" onClick={onOpen} bg="white">
+              <Box d="flex" justifyContent="space-between" alignItems="center" bg="#17181f" color="#fdf5d3" w="100%" p="15px 10px 15px 10px" borderWidth="0px">
+                  <Tooltip label="Search Your Friends"  hasArrow placement="bottom-end">
+                        <Button variant="ghost" className="searchBar" onClick={onOpen} bg="#474747" fontWeight="600">
                            <i className="fas fa-search"></i> 
                            <Text d={{base:"none",md:"flex"}} px="4" fontFamily="Montserrat" className="searchText">
                                Search Friends
@@ -149,22 +149,22 @@ const SideDrawer = () => {
                            </MenuList>
                        </Menu>
                        <Menu>
-                           <MenuButton as={Button} rightIcon={<ChevronDownIcon></ChevronDownIcon>}>
+                           <MenuButton as={Button} background="black" color="#fdf5d3" rightIcon={<ChevronDownIcon></ChevronDownIcon>}>
                                <Avatar size="sm" cursor="pointer" name={user.name} src={user.pic}></Avatar>  
                                  {/* name={user.name} src={user.pic} */}
                            </MenuButton>
-                           <MenuList>
+                           <MenuList color="black">
                                <ProfileModal user={user}>
                                    <MenuItem>My Profile</MenuItem>
                                </ProfileModal>
                                <MenuDivider></MenuDivider>
-                               <MenuItem onClick={logoutHandler} >Logout</MenuItem>
+                               <MenuItem onClick={logoutHandler} color="black" >Logout</MenuItem>
                            </MenuList>
                        </Menu>
                    </div>
               </Box>  
 
-              <Drawer placement="left" onClose={onClose} isOpen={isOpen} bg="#f5f7fb" >
+              <Drawer placement="left" onClose={onClose} isOpen={isOpen} bg="#fdf5d3" >
                   <DrawerOverlay />
                       <DrawerContent>
                           <DrawerHeader borderBottom="1px" fontFamily="Oswald" fontWeight="500" boxShadow="none">
@@ -175,13 +175,14 @@ const SideDrawer = () => {
                                 <Input
                                 placeholder="Search by Name or Email"
                                 mr={2}
-                                bg="white"
+                                bg="#474747"
+                                color="#fdf5d3"
                                 value={search}
                                 className="searchFriend"
                                 fontFamily="Montserrat"
                                 onChange={(e)=>setSearch(e.target.value)}
                                 />
-                                <Button onClick={handleSearch} className="searchButton">Go</Button>
+                                <Button onClick={handleSearch} background="black" color="#fdf5d3" className="searchButton">Go</Button>
                             </Box>
                             {loading ? (
                                 <Loader></Loader>
@@ -189,6 +190,7 @@ const SideDrawer = () => {
                                 searchResult?.map((item)=>(
                                     // // console.log(item);
                                     <UserListItem 
+                                    className="userBox"
                                     key={item._id}
                                     user={item}
                                     handleFunction={()=>accessChat(item._id)}

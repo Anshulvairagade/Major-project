@@ -114,37 +114,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
         })
     })
 
-        //  let  translateNewMessage = (data) =>      {
-        //         let status = 0;
-        //          const params = new URLSearchParams();
-        //             params.delete('q');
-        //             params.append('q', data.content);
-        //             //  // console.log(input,output);
-        //             params.append('source', from);
-        //             params.append('target', to);
-        //             params.append('api_key', 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx');
 
-        //             axios.post('https://libretranslate.de/translate', params,
-        //                {
-        //                   headers:
-        //                   {
-        //                      'accept': 'application/json',
-        //                      'Content-Type': 'application/x-www-form-urlencoded'
-        //                   }
-        //                }).then(res => {
-
-        //                   status = res.status + status;
-        //                   //   // console.log(res.status);
-        //                   data["value"] = res.data.translatedText;
-        //                   data["lang"] = to;
-        //                 //   if (i * 200 == status) {
-        //                      //  // console.log('Translated')
-        //                 //      setChatLoading(false);
-        //                 //   }
-        //                })
-        //             setMessage([...message, data]);
-        //         }
-  // console.log(notification);
 
 
     const sendMessage = async (event) => {
@@ -217,7 +187,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                         justifyContent={{ base: "space-between" }}
                         alignItems="center"
                         borderRadius="12px"
-                        bg="#f5f7fb"
+                        bg="#fdf5d3"
                     >
                         <IconButton
                             d={{ base: "flex", md: "none" }}
@@ -328,7 +298,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                     </Box>
                 </>) : (
                     <Box d="flex" alignItems="center" justifyContent="center" h="100%">
-                        <Text fontSize="3xl" pb={3} fontFamily="Montserrat" fontWeight="600">
+                        <Text fontSize="3xl" pb={3} fontFamily="Montserrat" fontWeight="600" color="#fdf5d3">
                             Click on user to start chatting
                        </Text>
                     </Box>

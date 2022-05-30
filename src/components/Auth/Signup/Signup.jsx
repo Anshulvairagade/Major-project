@@ -3,7 +3,7 @@ import { FormControl, FormLabel } from '@chakra-ui/form-control'
 import { Input, InputGroup, InputRightElement } from '@chakra-ui/input'
 import { VStack } from '@chakra-ui/layout'
 import React, { useState } from 'react'
-import { useToast } from '@chakra-ui/react'
+import { background, useToast } from '@chakra-ui/react'
 import axios from 'axios'
 import { useHistory } from 'react-router'
 import './Signup.css'
@@ -130,10 +130,11 @@ const Signup = () => {
     }
 
     return (
-        <VStack spacing="5px" color="black">
+        <VStack spacing="5px" color="black" overflowY="scroll" height="400px">
              <FormControl isRequired>
                  <FormLabel>Name</FormLabel>
                  <Input 
+                     className="inputBox"
                      placeholder="Enter Your Name"
                      onChange={(e)=>setName(e.target.value)}
                      borderRadius="8px"
@@ -142,6 +143,7 @@ const Signup = () => {
              <FormControl isRequired>
                  <FormLabel>Email</FormLabel>
                  <Input 
+                     className="inputBox"
                      placeholder="Enter Your Email"
                      onChange={(e)=>setEmail(e.target.value)}
                      borderRadius="8px"
@@ -152,12 +154,13 @@ const Signup = () => {
                  <InputGroup>
                     <Input 
                         type={ show? "text" :"password"}
+                        className="inputBox"
                         placeholder="Enter Passoword"
                         onChange={(e)=>setPassword(e.target.value)}
                         borderRadius="8px"
                         ></Input>
                         <InputRightElement width="4.5rem">
-                            <Button h="1.75rem" size="sm" onClick={showText}>
+                            <Button className="blackButton" h="1.75rem" size="sm" onClick={showText}>
                                 {show ? "Hide" : "Show"}
                             </Button>
                         </InputRightElement>
@@ -168,12 +171,13 @@ const Signup = () => {
                  <InputGroup>
                     <Input 
                         type={ showConfirm? "text" :"password"}
+                        className="inputBox"
                         placeholder="Confirm Passoword"
                         onChange={(e)=>setConfirm(e.target.value)}
                         borderRadius="8px"
                         ></Input>
                         <InputRightElement width="4.5rem">
-                            <Button h="1.75rem" size="sm" onClick={showConfirmText}>
+                            <Button className="blackButton" h="1.75rem" size="sm" onClick={showConfirmText}>
                                 {showConfirm ? "Hide" : "Show"}
                             </Button>
                         </InputRightElement>
@@ -184,6 +188,7 @@ const Signup = () => {
                  <InputGroup>
                     <Input 
                         placeholder="Example : India"
+                        className="inputBox"
                         onChange={(e)=>setCountry(e.target.value)}
                         borderRadius="8px"
                         ></Input>
@@ -193,6 +198,7 @@ const Signup = () => {
                  <InputGroup>
                     <Input 
                         placeholder="Your Native Language"
+                        className="inputBox"
                         onChange={(e)=>setLanguage(e.target.value)}
                         borderRadius="8px"
                         ></Input>
@@ -213,14 +219,13 @@ const Signup = () => {
                           type="file"
                           accept="image/*"
                           placeholder="Upload Image"
-                          onChange={(e) => postDetails(e.target.files[0])} />
+                          onChange={(e) => postDetails(e.target.files[0])}  />
                      </button>
              </FormControl>
              <Button 
-             bg="#2083f6"
+             className="blackButton"
              width="100%"
-             color="white"
-             style={{marginTop:15}}
+             style={{marginTop:15, padding:20}}
              onClick={submitHandler}
              isLoading={loading}
              >

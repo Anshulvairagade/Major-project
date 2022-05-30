@@ -1,7 +1,7 @@
 import { Avatar } from '@chakra-ui/avatar';
 import axios from 'axios';
 import { Tooltip } from '@chakra-ui/tooltip';
-import React, { forwardRef, useEffect, useImperativeHandle, useState } from 'react';
+import React, { forwardRef, useImperativeHandle, useState } from 'react';
 import ScrollableFeed from 'react-scrollable-feed'
 import { ChatState } from '../../../components/Context/ChatProvider';
 import { isSameSender, isSameSenderMargin, isSameUser, isLastMessage } from './../Config/ChatLogic';
@@ -93,71 +93,8 @@ const ScrollableChat = forwardRef(({ messages, input, output }, ref) => {
                   }
                }
             });
-       //  }
-         // if (value == "new") {
-         //    let i = 0;
-         //       setChatLoading(true);
-         //       //   // console.log(item.content);
-         //       if (getData) {
-         //          setGetData(false);
-         //          if (messages[messages.length-1].value != undefined && messages[messages.length-1] != output) {
-         //             i = i + 1;
-         //             params.delete('q');
-         //             params.append('q', messages[messages.length-1].content);
-         //             //  // console.log(input,output);
-         //             params.append('source', input);
-         //             params.append('target', output);
-         //             params.append('api_key', 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx');
 
-         //             axios.post('https://libretranslate.de/translate', params,
-         //                {
-         //                   headers:
-         //                   {
-         //                      'accept': 'application/json',
-         //                      'Content-Type': 'application/x-www-form-urlencoded'
-         //                   }
-         //                }).then(res => {
-         //                   status = res.status + status;
-         //                   //   // console.log(res.status);
-         //                   messages[messages.length-1]["value"] = res.data.translatedText;
-         //                   messages[messages.length-1]["Lang"] = output;
-         //                   if (i * 200 == status) {
-         //                      //  // console.log('Translated')
-         //                      setChatLoading(false);
-         //                   }
-         //                })
-         //          } else if (messages[messages.length-1].value == undefined) {
-         //             i = i + 1;
-         //             params.delete('q');
-         //             params.append('q', messages[messages.length-1].content);
-         //             //  // console.log(input,output);
-         //             params.append('source', input);
-         //             params.append('target', output);
-         //             params.append('api_key', 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx');
-
-         //             axios.post('https://libretranslate.de/translate', params,
-         //                {
-         //                   headers:
-         //                   {
-         //                      'accept': 'application/json',
-         //                      'Content-Type': 'application/x-www-form-urlencoded'
-         //                   }
-         //                }).then(res => {
-
-         //                   status = res.status + status;
-         //                   //   // console.log(res.status);
-         //                   messages[messages.length-1]["value"] = res.data.translatedText;
-         //                   messages[messages.length-1]["lang"] = output;
-         //                   if (i * 200 == status) {
-         //                      //  // console.log('Translated')
-         //                      setChatLoading(false);
-         //                   }
-         //                })
-         //          }
-         //       }
-         // }
          setGetData(true);
-         console.log(messages);
       }
    }));
 
@@ -194,9 +131,10 @@ const ScrollableChat = forwardRef(({ messages, input, output }, ref) => {
                   }
                   <span
                      style={{
-                        backgroundColor: `${m.sender._id === user._id ? "#393f93" : "#f5f7fb"}`,
-                        color: `${m.sender._id === user._id ? "white" : "black"}`,
+                        backgroundColor: `${m.sender._id === user._id ? "#fdf5d3" : "#323441"}`,
+                        color: `${m.sender._id === user._id ? "black" : "white"}`,
                         fontFamily: "Montserrat",
+                        fontWeight:500,
                         borderRadius: "10px",
                         fontSize: "14px",
                         padding: "10px 15px",

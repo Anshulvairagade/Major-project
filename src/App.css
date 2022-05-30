@@ -13,10 +13,15 @@
 .App{
     height: 100vh;
     width: 100vw;
-    background: #f5f7fb;
+    /* background: black; */
+    /* background-color: #ffeaa7;
+background-image: linear-gradient(315deg, #ffeaa7 0%, #000000 74%); */
+/* background-color: #000000;
+background-image: linear-gradient(315deg, #000000 0%, #958e69 74%); */
+background: #474747;
 }
 .chakra-modal__content{
-    background: aliceblue !important;
+    background: #fdf5d3 !important;
 }
 ::-webkit-scrollbar{
     width: 0px;

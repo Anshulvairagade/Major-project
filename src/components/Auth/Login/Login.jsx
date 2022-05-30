@@ -80,6 +80,7 @@ const Login = () => {
                  <FormLabel>Email</FormLabel>
                  <Input 
                      placeholder="Enter Your Email"
+                     className="inputBox"
                      onChange={(e)=>setEmail(e.target.value)}
                      borderRadius="8px"
                      ></Input>
@@ -89,23 +90,23 @@ const Login = () => {
                  <InputGroup>
                     <Input 
                         type={ show? "text" :"password"}
+                        className="inputBox"
                         placeholder="Enter Passoword"
                         onChange={(e)=>setPassword(e.target.value)}
                         borderRadius="8px"
                         ></Input>
                         <InputRightElement width="4.5rem">
-                            <Button h="1.75rem" size="sm" onClick={showText}>
+                            <Button className="blackButton" h="1.75rem" size="sm" onClick={showText}>
                                 {show ? "Hide" : "Show"}
                             </Button>
                         </InputRightElement>
                   </InputGroup>
              </FormControl>
              <Button 
-             bg="#2083f6"
+             className="blackButton"
              width="100%"
              style={{marginTop:15}}
              onClick={submitHandler}
-             color="white"
              >
                  Log-In
              </Button>

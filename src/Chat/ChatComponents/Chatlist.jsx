@@ -56,6 +56,8 @@ const ChatList = ({ fetchAgain }) => {
       bg="white"
       w={{ base: "100%", md: "31%" }}
       borderRadius="lg"
+      background="black"
+      color="#fdf5d3"
     >
       <Box
         pb={3}
@@ -69,7 +71,7 @@ const ChatList = ({ fetchAgain }) => {
         fontWeight="500"
       >
         My Chats
-        <GroupChatModal>
+        {/* <GroupChatModal>
           <Button
             d="flex"
             fontSize={{ base: "10px", md: "7px", lg: "11px" }}
@@ -81,14 +83,15 @@ const ChatList = ({ fetchAgain }) => {
           >
             New Group Chat
           </Button>
-        </GroupChatModal>
+        </GroupChatModal> */}
       </Box>
       <Box
         d="flex"
         flexDir="column"
         p={3}
         my={3}
-        bg="#e4e4e4"
+        bg="#474747"
+        color="black"
         w="100%"
         h="100%"
         borderRadius="lg"
@@ -101,7 +104,8 @@ const ChatList = ({ fetchAgain }) => {
               <Box
                 onClick={() => setSelectedChat(chat)}
                 cursor="pointer"
-                bg={selectedChat === chat ? "#b7d3ff" : "#f5f7fb"}
+                bg={selectedChat === chat ? "#fdf5d3" : "black"}
+                color={selectedChat === chat ? "black" : "#fdf5d3" }
                 p={3}
                 borderRadius="lg"
                 key={chat._id}
@@ -113,7 +117,7 @@ const ChatList = ({ fetchAgain }) => {
                       : chat.chatName}
                   </Text>
                   {chat.latestMessage && (
-                    <Text fontSize="xs" fontFamily="Montserrat">
+                    <Text fontSize="xs" fontFamily="Montserrat" fontWeight="500">
                       <b>{chat.latestMessage.sender.name} : </b>
                       {chat.latestMessage.content.length > 50
                         ? chat.latestMessage.content.substring(0, 51) + "..."
